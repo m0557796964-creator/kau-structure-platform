@@ -7,9 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #005A3A; /* KAU Green */
+            --primary-color: #005A3A;
             --primary-light: #007D51;
-            --secondary-color: #B89A5A; /* KAU Gold */
+            --secondary-color: #B89A5A;
             --bg-color: #F8F9FA;
             --card-bg: #FFFFFF;
             --text-main: #2D3748;
@@ -66,14 +66,6 @@
         .main-logo {
             height: 65px;
             width: auto;
-            object-fit: contain;
-        }
-
-        .login-logo {
-            height: 100px;
-            width: auto;
-            margin: 0 auto 15px auto;
-            display: block;
             object-fit: contain;
         }
 
@@ -145,6 +137,7 @@
             animation: slideIn 0.3s ease forwards;
             min-width: 280px;
         }
+
         .toast.success { background-color: var(--success); }
         .toast.error { background-color: var(--danger); }
         .toast.fade-out { animation: fadeOut 0.3s ease forwards; }
@@ -168,13 +161,15 @@
             opacity: 0; pointer-events: none;
             transition: var(--transition);
         }
+
         .modal-overlay.active { opacity: 1; pointer-events: all; }
 
         .modal-box {
             background: white;
             padding: 25px 30px;
             border-radius: var(--border-radius);
-            width: 400px; max-width: 90%;
+            width: 400px;
+            max-width: 90%;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             transform: translateY(-20px);
             transition: var(--transition);
@@ -218,7 +213,6 @@
         }
 
         .text-center { text-align: center; }
-        .text-large { font-size: 1.5rem; letter-spacing: 5px; }
         .mt-15 { margin-top: 15px; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .flex-between { display: flex; justify-content: space-between; align-items: center; }
@@ -252,13 +246,6 @@
             box-shadow: 0 0 0 3px rgba(184, 154, 90, 0.2);
         }
 
-        .login-note {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 8px;
-            display: block;
-        }
-
         .btn {
             padding: 10px 20px;
             border: none;
@@ -280,6 +267,7 @@
             border: 1px solid var(--border-color);
             color: var(--text-main);
         }
+
         .btn-outline:hover { background-color: #f1f1f1; }
 
         .btn-block { width: 100%; }
@@ -328,29 +316,6 @@
             padding: 15px 20px;
             border-top: 1px solid var(--border-color);
             background: #fcfcfc;
-        }
-
-        .login-card {
-            max-width: 400px;
-            margin: 80px auto;
-            background: var(--card-bg);
-            padding: 40px 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-md);
-            text-align: center;
-            border-top: 4px solid var(--primary-color);
-        }
-
-        .login-header h2 {
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-
-        .login-header p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 25px;
-            line-height: 1.4;
         }
 
         .builder-layout {
@@ -644,13 +609,11 @@
             gap: 20px;
         }
 
-        .diff-list,
         .recommendation-list,
         .advanced-list {
             list-style: none;
         }
 
-        .diff-list li,
         .recommendation-list li,
         .advanced-list li {
             padding: 12px 15px;
@@ -659,18 +622,9 @@
             padding-right: 30px;
         }
 
-        .diff-list li:last-child,
         .recommendation-list li:last-child,
         .advanced-list li:last-child {
             border-bottom: none;
-        }
-
-        .diff-list li::before {
-            content: '▪';
-            position: absolute;
-            right: 10px;
-            color: var(--secondary-color);
-            font-size: 1.2rem;
         }
 
         .recommendation-list li::before {
@@ -722,16 +676,9 @@
         .status-reorg { color: var(--danger); }
 
         @media (max-width: 1100px) {
-            .kpi-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .comparison-trees,
-            .analysis-details {
-                grid-template-columns: 1fr;
-            }
-            .analysis-details .card[style*="grid-column: span 2"] {
-                grid-column: auto !important;
-            }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .comparison-trees, .analysis-details { grid-template-columns: 1fr; }
+            .analysis-details .card[style*="grid-column: span 2"] { grid-column: auto !important; }
         }
 
         @media (max-width: 900px) {
@@ -739,22 +686,13 @@
                 grid-template-columns: 1fr;
                 height: auto;
             }
-            .builder-form,
-            .builder-preview {
-                height: auto;
-            }
-            .tree-container {
-                min-height: 320px;
-            }
+            .builder-form, .builder-preview { height: auto; }
+            .tree-container { min-height: 320px; }
         }
 
         @media (max-width: 768px) {
-            body {
-                padding-bottom: 110px;
-            }
-            .header-content,
-            .logo-area,
-            .flex-between {
+            body { padding-bottom: 110px; }
+            .header-content, .logo-area, .flex-between {
                 flex-direction: column;
                 align-items: stretch;
             }
@@ -766,20 +704,11 @@
                 flex-direction: column;
                 gap: 5px;
             }
-            .footer-divider {
-                display: none;
-            }
-            .grid-2,
-            .kpi-grid,
-            .comparison-trees,
-            .analysis-details,
-            .leakage-grid {
+            .footer-divider { display: none; }
+            .grid-2, .kpi-grid, .comparison-trees, .analysis-details, .leakage-grid {
                 grid-template-columns: 1fr;
             }
-            .modal-actions,
-            .flex-gap {
-                flex-wrap: wrap;
-            }
+            .modal-actions, .flex-gap { flex-wrap: wrap; }
         }
 
         @media print {
@@ -787,7 +716,7 @@
                 size: A4;
                 margin: 15mm 15mm 20mm 15mm;
             }
-            
+
             body {
                 background-color: white;
                 padding-bottom: 0;
@@ -807,9 +736,7 @@
                 margin-bottom: 20px;
             }
 
-            .main-logo {
-                height: 55px;
-            }
+            .main-logo { height: 55px; }
 
             .app-container {
                 margin: 0;
@@ -842,7 +769,7 @@
                 margin-bottom: 20px;
                 page-break-inside: avoid;
             }
-            
+
             .tree-panel .tree-container.static {
                 height: auto;
                 min-height: 200px;
@@ -854,9 +781,7 @@
                 margin-bottom: 20px;
             }
 
-            .kpi-card {
-                padding: 10px;
-            }
+            .kpi-card { padding: 10px; }
         }
     </style>
 </head>
@@ -889,26 +814,8 @@
     </header>
 
     <main class="app-container">
-        
-        <section id="screen-login" class="screen active">
-            <div class="login-card">
-                <div class="login-header">
-                    <img src="King-Abdulaziz-University-01.png" alt="شعار جامعة الملك عبدالعزيز" class="login-logo">
-                    <h2>بوابة الهيكلة التنظيمية</h2>
-                    <p>لجنة اعتماد الهياكل التنظيمية والأوصاف الوظيفية لقطاعات الجامعة</p>
-                </div>
-                <form onsubmit="login(event)">
-                    <div class="form-group">
-                        <label>رمز الدخول (4 أرقام)</label>
-                        <input type="password" id="login-pin" maxlength="4" placeholder="----" class="text-center text-large" autocomplete="off">
-                        <span class="login-note">لأغراض العرض التجريبي، يكفي إدخال أي رمز مكوّن من 4 أرقام.</span>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">دخول</button>
-                </form>
-            </div>
-        </section>
 
-        <section id="screen-entity" class="screen hidden">
+        <section id="screen-entity" class="screen active">
             <div class="card">
                 <div class="card-header">
                     <h3>تعريف الجهة</h3>
@@ -920,6 +827,7 @@
                                 <label>اسم الجهة *</label>
                                 <input type="text" id="entity-name" placeholder="أدخل اسم الجهة" required>
                             </div>
+
                             <div class="form-group">
                                 <label>نوع الجهة *</label>
                                 <select id="entity-type" required>
@@ -934,6 +842,7 @@
                                     <option value="وحدة مستقلة">وحدة مستقلة</option>
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label>الارتباط التنظيمي الأعلى *</label>
                                 <select id="entity-parent-org" required>
@@ -949,6 +858,7 @@
                                     <option value="الرئيس التنفيذي للاتصال المؤسسي">الرئيس التنفيذي للاتصال المؤسسي</option>
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label>القطاع *</label>
                                 <select id="entity-sector" required>
@@ -960,6 +870,7 @@
                                     <option value="قطاع الخدمات المؤسسية">قطاع الخدمات المؤسسية</option>
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label>المسؤول عن الجهة *</label>
                                 <select id="entity-manager" required>
@@ -970,43 +881,50 @@
                                     <option value="مدير إدارة">مدير إدارة</option>
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label>إجمالي عدد الموظفين</label>
                                 <input type="number" id="entity-employees" placeholder="0" min="0">
                             </div>
                         </div>
+
                         <div class="form-group mt-15">
                             <label>الغرض من الجهة *</label>
                             <textarea id="entity-purpose" rows="2" required></textarea>
                         </div>
+
                         <div class="form-group">
                             <label>الأهداف الرئيسية للجهة *</label>
                             <textarea id="entity-goals" rows="3" required></textarea>
                         </div>
                     </div>
+
                     <div class="card-footer flex-between">
-                        <button type="button" class="btn btn-outline" onclick="goToScreen('screen-login')">السابق</button>
+                        <div></div>
                         <button type="submit" class="btn btn-primary">التالي</button>
                     </div>
                 </form>
             </div>
         </section>
 
-        <section id="screen-prev-struct" class="screen hidden">
+        <section id="screen-prev-struct" class="screen">
             <div class="builder-layout">
                 <div class="builder-form panel">
                     <div class="panel-header">
                         <h3>إدخال الهيكل السابق</h3>
                         <p class="subtitle">بناء وتكوين الوحدات التنظيمية</p>
                     </div>
+
                     <div class="panel-body">
                         <form id="form-prev" onsubmit="saveNode(event, 'prev')">
                             <div class="form-section">
                                 <h4>الحقول الإلزامية</h4>
+
                                 <div class="form-group">
                                     <label>اسم الوحدة التنظيمية *</label>
                                     <input type="text" id="prev-name" required>
                                 </div>
+
                                 <div class="grid-2">
                                     <div class="form-group">
                                         <label>المستوى التنظيمي *</label>
@@ -1023,25 +941,30 @@
                                             <option value="وحدة">وحدة</option>
                                         </select>
                                     </div>
+
                                     <div class="form-group">
                                         <label>الوحدة الأم *</label>
                                         <select id="prev-parent">
                                             <option value="null">لا يوجد (ارتباط مباشر)</option>
                                         </select>
                                     </div>
+
                                     <div class="form-group">
                                         <label>عدد الموظفين *</label>
                                         <input type="number" id="prev-emp" required min="0">
                                     </div>
+
                                     <div class="form-group">
                                         <label>عدد القيادات *</label>
                                         <input type="number" id="prev-lead" required min="0">
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <label>الأهداف الرئيسية *</label>
                                     <textarea id="prev-goals" rows="2" required></textarea>
                                 </div>
+
                                 <div class="form-group">
                                     <label>المهام الرئيسية *</label>
                                     <textarea id="prev-tasks" rows="2" required></textarea>
@@ -1050,34 +973,38 @@
 
                             <div class="form-section">
                                 <h4>حقول إضافية</h4>
+
                                 <div class="form-group">
                                     <label>المهام الثانوية</label>
                                     <textarea id="prev-subtasks" rows="1"></textarea>
                                 </div>
+
                                 <div class="grid-2">
                                     <div class="form-group">
                                         <label>الوظائف الشاغرة</label>
                                         <input type="number" id="prev-vacancies" min="0">
                                     </div>
+
                                     <div class="form-group">
                                         <label>الملاحظات</label>
                                         <input type="text" id="prev-notes">
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="flex-gap">
                                 <button type="submit" id="btn-submit-prev" class="btn btn-secondary flex-1">إضافة الوحدة التنظيمية</button>
                                 <button type="button" id="btn-cancel-prev" class="btn btn-outline" style="display:none;" onclick="cancelEdit('prev')">إلغاء التعديل</button>
                             </div>
                         </form>
                     </div>
+
                     <div class="panel-footer flex-between">
                         <button class="btn btn-outline" onclick="goToScreen('screen-entity')">السابق</button>
                         <button class="btn btn-primary" onclick="validateAndGoToNewStruct()">التالي (إنهاء الهيكل السابق)</button>
                     </div>
                 </div>
-                
+
                 <div class="builder-preview panel">
                     <div class="panel-header">
                         <h3>الشجرة التنظيمية: الهيكل السابق</h3>
@@ -1089,21 +1016,24 @@
             </div>
         </section>
 
-        <section id="screen-new-struct" class="screen hidden">
+        <section id="screen-new-struct" class="screen">
             <div class="builder-layout">
                 <div class="builder-form panel">
                     <div class="panel-header">
                         <h3>إدخال الهيكل الجديد</h3>
                         <p class="subtitle">بناء وتكوين الوحدات التنظيمية</p>
                     </div>
+
                     <div class="panel-body">
                         <form id="form-new" onsubmit="saveNode(event, 'new')">
                             <div class="form-section">
                                 <h4>الحقول الإلزامية</h4>
+
                                 <div class="form-group">
                                     <label>اسم الوحدة التنظيمية *</label>
                                     <input type="text" id="new-name" required>
                                 </div>
+
                                 <div class="grid-2">
                                     <div class="form-group">
                                         <label>المستوى التنظيمي *</label>
@@ -1120,25 +1050,30 @@
                                             <option value="وحدة">وحدة</option>
                                         </select>
                                     </div>
+
                                     <div class="form-group">
                                         <label>الوحدة الأم *</label>
                                         <select id="new-parent">
                                             <option value="null">لا يوجد (ارتباط مباشر)</option>
                                         </select>
                                     </div>
+
                                     <div class="form-group">
                                         <label>عدد الموظفين *</label>
                                         <input type="number" id="new-emp" required min="0">
                                     </div>
+
                                     <div class="form-group">
                                         <label>عدد القيادات *</label>
                                         <input type="number" id="new-lead" required min="0">
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <label>الأهداف الرئيسية *</label>
                                     <textarea id="new-goals" rows="2" required></textarea>
                                 </div>
+
                                 <div class="form-group">
                                     <label>المهام الرئيسية *</label>
                                     <textarea id="new-tasks" rows="2" required></textarea>
@@ -1147,34 +1082,38 @@
 
                             <div class="form-section">
                                 <h4>حقول إضافية</h4>
+
                                 <div class="form-group">
                                     <label>المهام الثانوية</label>
                                     <textarea id="new-subtasks" rows="1"></textarea>
                                 </div>
+
                                 <div class="grid-2">
                                     <div class="form-group">
                                         <label>الوظائف الشاغرة</label>
                                         <input type="number" id="new-vacancies" min="0">
                                     </div>
+
                                     <div class="form-group">
                                         <label>الملاحظات</label>
                                         <input type="text" id="new-notes">
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="flex-gap">
                                 <button type="submit" id="btn-submit-new" class="btn btn-secondary flex-1">إضافة الوحدة التنظيمية</button>
                                 <button type="button" id="btn-cancel-new" class="btn btn-outline" style="display:none;" onclick="cancelEdit('new')">إلغاء التعديل</button>
                             </div>
                         </form>
                     </div>
+
                     <div class="panel-footer flex-between">
                         <button class="btn btn-outline" onclick="goToScreen('screen-prev-struct')">السابق</button>
                         <button class="btn btn-primary" onclick="validateAndGenerateAnalysis()">التالي (إنهاء الهيكل الجديد)</button>
                     </div>
                 </div>
-                
+
                 <div class="builder-preview panel">
                     <div class="panel-header">
                         <h3>الشجرة التنظيمية: الهيكل الجديد</h3>
@@ -1186,7 +1125,7 @@
             </div>
         </section>
 
-        <section id="screen-analysis" class="screen hidden">
+        <section id="screen-analysis" class="screen">
             <div class="analysis-header">
                 <h2>مقارنة الهيكلين والتحليل التنظيمي</h2>
                 <div class="flex-gap">
@@ -1201,4 +1140,582 @@
                         <div><span class="text-muted" style="font-size:0.85rem;">اسم الجهة:</span> <strong id="summary-entity-name" style="color:var(--primary-color);"></strong></div>
                         <div><span class="text-muted" style="font-size:0.85rem;">القطاع:</span> <strong id="summary-entity-sector" style="color:var(--primary-color);"></strong></div>
                         <div><span class="text-muted" style="font-size:0.85rem;">نوع الجهة:</span> <strong id="summary-entity-type" style="color:var(--primary-color);"></strong></div>
-                        <div><span class="text-muted" style="font-size:0.85rem;">الارتباط التنظيمي الأعلى:</span> <strong id="summary-entity-parent-org" style="color:var
+                        <div><span class="text-muted" style="font-size:0.85rem;">الارتباط التنظيمي الأعلى:</span> <strong id="summary-entity-parent-org" style="color:var(--primary-color);"></strong></div>
+                        <div><span class="text-muted" style="font-size:0.85rem;">المسؤول عن الجهة:</span> <strong id="summary-entity-manager" style="color:var(--primary-color);"></strong></div>
+                    </div>
+
+                    <div style="margin-bottom: 10px;">
+                        <span class="text-muted" style="font-size:0.85rem; display:block; margin-bottom:3px;">الغرض من الجهة:</span>
+                        <strong id="summary-entity-purpose" style="color:var(--text-main); font-size:0.95rem;"></strong>
+                    </div>
+
+                    <div>
+                        <span class="text-muted" style="font-size:0.85rem; display:block; margin-bottom:3px;">الأهداف الرئيسية للجهة:</span>
+                        <strong id="summary-entity-goals" style="color:var(--text-main); font-size:0.95rem;"></strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-title">الوحدات التنظيمية</div>
+                    <div class="kpi-values">
+                        <div class="value-box"><span class="label">السابق</span><span class="val" id="kpi-units-prev">0</span></div>
+                        <div class="vs">مقابل</div>
+                        <div class="value-box highlight"><span class="label">الجديد</span><span class="val" id="kpi-units-new">0</span></div>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-title">عدد القيادات</div>
+                    <div class="kpi-values">
+                        <div class="value-box"><span class="label">السابق</span><span class="val" id="kpi-leaders-prev">0</span></div>
+                        <div class="vs">مقابل</div>
+                        <div class="value-box highlight"><span class="label">الجديد</span><span class="val" id="kpi-leaders-new">0</span></div>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-title">المستويات الإدارية</div>
+                    <div class="kpi-values">
+                        <div class="value-box"><span class="label">السابق</span><span class="val" id="kpi-levels-prev">0</span></div>
+                        <div class="vs">مقابل</div>
+                        <div class="value-box highlight"><span class="label">الجديد</span><span class="val" id="kpi-levels-new">0</span></div>
+                    </div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-title">متوسط نطاق الإشراف</div>
+                    <div class="kpi-values">
+                        <div class="value-box"><span class="label">السابق</span><span class="val" id="kpi-span-prev">0</span></div>
+                        <div class="vs">مقابل</div>
+                        <div class="value-box highlight"><span class="label">الجديد</span><span class="val" id="kpi-span-new">0</span></div>
+                    </div>
+                </div>
+
+                <div class="kpi-card kpi-secondary">
+                    <div class="kpi-title">الوحدات المستحدثة</div>
+                    <div class="kpi-single-value highlight-success" id="kpi-added-units">0</div>
+                    <div class="kpi-subtitle">في الهيكل الجديد</div>
+                </div>
+
+                <div class="kpi-card kpi-secondary">
+                    <div class="kpi-title">الوحدات الملغاة/المدمجة</div>
+                    <div class="kpi-single-value highlight-danger" id="kpi-removed-units">0</div>
+                    <div class="kpi-subtitle">مقارنة بالسابق</div>
+                </div>
+
+                <div class="kpi-card kpi-secondary" style="grid-column: span 2;">
+                    <div class="kpi-title">الوحدات الصغيرة (أقل من 5 موظفين)</div>
+                    <div class="kpi-single-value highlight-warning" id="kpi-small-units">0</div>
+                    <div class="kpi-subtitle">في الهيكل الجديد</div>
+                </div>
+            </div>
+
+            <div class="comparison-trees">
+                <div class="tree-panel">
+                    <h3>الهيكل السابق</h3>
+                    <div class="tree-container static" id="analysis-tree-prev"></div>
+                </div>
+
+                <div class="tree-panel">
+                    <h3>الهيكل الجديد</h3>
+                    <div class="tree-container static" id="analysis-tree-new"></div>
+                </div>
+            </div>
+
+            <div class="analysis-details">
+                <div class="card" style="page-break-inside: avoid; grid-column: span 2;">
+                    <div class="card-header"><h3>تشخيص الهيكل التنظيمي</h3></div>
+                    <div class="card-body">
+                        <ul class="advanced-list" id="diagnosis-container"></ul>
+                    </div>
+                </div>
+
+                <div class="card" style="page-break-inside: avoid; grid-column: span 2;">
+                    <div class="card-header"><h3>تحليل التسرب والتكرار الوظيفي</h3></div>
+                    <div class="card-body">
+                        <div class="leakage-grid" id="leakage-container"></div>
+                    </div>
+                </div>
+
+                <div class="card" style="page-break-inside: avoid; grid-column: span 2;">
+                    <div class="card-header"><h3>اقتراحات تحسين الهيكل التنظيمي</h3></div>
+                    <div class="card-body">
+                        <ul class="recommendation-list" id="recommendations-container"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center no-print" style="margin-top: 30px;">
+                <button class="btn btn-outline" onclick="location.reload()">بدء مشروع جديد</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="footer-content">
+            <span>جامعة الملك عبدالعزيز</span>
+            <span class="footer-divider">|</span>
+            <span>لجنة اعتماد الهياكل التنظيمية والأوصاف الوظيفية لقطاعات الجامعة</span>
+            <span class="footer-divider">|</span>
+            <span>للاستخدام الداخلي</span>
+        </div>
+    </footer>
+
+    <script>
+        let structures = {
+            prev: [],
+            new: []
+        };
+
+        let idCounter = 1;
+        let editingId = { prev: null, new: null };
+        let confirmCallback = null;
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerText = message;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.add('fade-out');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function showConfirm(msg, callback) {
+            document.getElementById('confirm-msg').innerText = msg;
+            confirmCallback = callback;
+            document.getElementById('confirm-modal').classList.add('active');
+        }
+
+        function closeConfirm() {
+            document.getElementById('confirm-modal').classList.remove('active');
+            confirmCallback = null;
+        }
+
+        function executeConfirm() {
+            if (confirmCallback) confirmCallback();
+            closeConfirm();
+        }
+
+        function goToScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+
+            const target = document.getElementById(screenId);
+            if (target) target.classList.add('active');
+
+            if (screenId === 'screen-prev-struct') {
+                updateDropdowns('prev');
+                renderTree('prev');
+            } else if (screenId === 'screen-new-struct') {
+                updateDropdowns('new');
+                renderTree('new');
+            }
+        }
+
+        function handleEntityNext(event) {
+            event.preventDefault();
+            goToScreen('screen-prev-struct');
+        }
+
+        function validateAndGoToNewStruct() {
+            if (structures.prev.length === 0) {
+                showToast('يرجى إضافة وحدة تنظيمية واحدة على الأقل في الهيكل السابق.', 'error');
+                return;
+            }
+            goToScreen('screen-new-struct');
+        }
+
+        function validateAndGenerateAnalysis() {
+            if (structures.new.length === 0) {
+                showToast('يرجى إضافة وحدة تنظيمية واحدة على الأقل في الهيكل الجديد.', 'error');
+                return;
+            }
+            generateAnalysis();
+        }
+
+        function saveNode(event, type) {
+            event.preventDefault();
+
+            const parentIdStr = document.getElementById(`${type}-parent`).value;
+            const parentId = parentIdStr === 'null' ? null : parseInt(parentIdStr);
+
+            const nodeData = {
+                name: document.getElementById(`${type}-name`).value.trim(),
+                level: document.getElementById(`${type}-level`).value,
+                parentId: parentId,
+                employees: parseInt(document.getElementById(`${type}-emp`).value) || 0,
+                leaders: parseInt(document.getElementById(`${type}-lead`).value) || 0,
+                goals: document.getElementById(`${type}-goals`).value.trim(),
+                tasks: document.getElementById(`${type}-tasks`).value.trim(),
+                subtasks: document.getElementById(`${type}-subtasks`).value.trim(),
+                vacancies: parseInt(document.getElementById(`${type}-vacancies`).value) || 0,
+                notes: document.getElementById(`${type}-notes`).value.trim()
+            };
+
+            if (editingId[type] !== null) {
+                const index = structures[type].findIndex(n => n.id === editingId[type]);
+                if (index !== -1) {
+                    if (nodeData.parentId === editingId[type]) {
+                        showToast('لا يمكن للوحدة أن تكون تابعة لنفسها.', 'error');
+                        return;
+                    }
+                    structures[type][index] = { ...structures[type][index], ...nodeData };
+                    showToast('تم تحديث الوحدة التنظيمية بنجاح', 'success');
+                }
+                cancelEdit(type);
+            } else {
+                const newNode = { id: idCounter++, ...nodeData };
+                structures[type].push(newNode);
+                document.getElementById(`form-${type}`).reset();
+                showToast('تمت إضافة الوحدة التنظيمية بنجاح', 'success');
+            }
+
+            updateDropdowns(type);
+            renderTree(type);
+        }
+
+        function editNode(id, type) {
+            const node = structures[type].find(n => n.id === id);
+            if (!node) return;
+
+            document.getElementById(`${type}-name`).value = node.name;
+            document.getElementById(`${type}-level`).value = node.level;
+            document.getElementById(`${type}-parent`).value = node.parentId === null ? 'null' : node.parentId;
+            document.getElementById(`${type}-emp`).value = node.employees;
+            document.getElementById(`${type}-lead`).value = node.leaders;
+            document.getElementById(`${type}-goals`).value = node.goals;
+            document.getElementById(`${type}-tasks`).value = node.tasks;
+            document.getElementById(`${type}-subtasks`).value = node.subtasks || '';
+            document.getElementById(`${type}-vacancies`).value = node.vacancies || 0;
+            document.getElementById(`${type}-notes`).value = node.notes || '';
+
+            editingId[type] = id;
+
+            document.getElementById(`btn-submit-${type}`).innerText = 'تحديث بيانات الوحدة';
+            document.getElementById(`btn-submit-${type}`).classList.replace('btn-secondary', 'btn-primary');
+            document.getElementById(`btn-cancel-${type}`).style.display = 'inline-block';
+        }
+
+        function cancelEdit(type) {
+            editingId[type] = null;
+            document.getElementById(`form-${type}`).reset();
+            document.getElementById(`btn-submit-${type}`).innerText = 'إضافة الوحدة التنظيمية';
+            document.getElementById(`btn-submit-${type}`).classList.replace('btn-primary', 'btn-secondary');
+            document.getElementById(`btn-cancel-${type}`).style.display = 'none';
+        }
+
+        function deleteNode(id, type) {
+            const hasChildren = structures[type].some(n => n.parentId === id);
+            if (hasChildren) {
+                showToast('لا يمكن حذف وحدة تحتوي على وحدات فرعية. الرجاء نقل أو حذف الفرعيات أولاً.', 'error');
+                return;
+            }
+
+            showConfirm('هل أنت متأكد من حذف هذه الوحدة نهائياً؟', () => {
+                structures[type] = structures[type].filter(n => n.id !== id);
+                if (editingId[type] === id) cancelEdit(type);
+                updateDropdowns(type);
+                renderTree(type);
+                showToast('تم حذف الوحدة بنجاح', 'success');
+            });
+        }
+
+        function updateDropdowns(type) {
+            const select = document.getElementById(`${type}-parent`);
+            const currentValue = select.value;
+
+            select.innerHTML = '<option value="null">لا يوجد (ارتباط مباشر)</option>';
+
+            structures[type].forEach(node => {
+                if (editingId[type] !== node.id) {
+                    const option = document.createElement('option');
+                    option.value = node.id;
+                    option.textContent = node.name;
+                    select.appendChild(option);
+                }
+            });
+
+            if ([...select.options].some(option => option.value === currentValue)) {
+                select.value = currentValue;
+            }
+        }
+
+        function renderTree(type, containerId = null) {
+            const targetId = containerId || `tree-${type}-container`;
+            const container = document.getElementById(targetId);
+            const data = structures[type];
+
+            if (data.length === 0) {
+                container.innerHTML = '<div class="empty-state">لم يتم إضافة وحدات بعد</div>';
+                return;
+            }
+
+            const buildHTML = (parentId) => {
+                const children = data.filter(n => n.parentId === parentId);
+                if (children.length === 0) return '';
+
+                let html = '<ul>';
+                children.forEach(child => {
+                    html += `
+                        <li>
+                            <div class="node-box">
+                                <span class="node-name">${child.name}</span>
+                                <span class="node-level">${child.level}</span>
+                                <div class="node-stats">م: ${child.employees} | ق: ${child.leaders}</div>
+                                ${containerId === null ? `
+                                    <div class="node-actions no-print">
+                                        <button class="btn btn-small btn-edit" type="button" onclick="editNode(${child.id}, '${type}')">تعديل</button>
+                                        <button class="btn btn-small btn-danger" type="button" onclick="deleteNode(${child.id}, '${type}')">حذف</button>
+                                    </div>
+                                ` : ''}
+                            </div>
+                            ${buildHTML(child.id)}
+                        </li>
+                    `;
+                });
+                html += '</ul>';
+                return html;
+            };
+
+            const rootNodes = data.filter(n => n.parentId === null || !data.some(p => p.id === n.parentId));
+
+            if (rootNodes.length === 0 && data.length > 0) {
+                container.innerHTML = '<div class="empty-state">يوجد خطأ في التسلسل الهرمي. يرجى مراجعة ارتباط الوحدات.</div>';
+                return;
+            }
+
+            let treeHtml = '<div class="org-tree"><ul>';
+            rootNodes.forEach(root => {
+                treeHtml += `
+                    <li>
+                        <div class="node-box">
+                            <span class="node-name">${root.name}</span>
+                            <span class="node-level">${root.level}</span>
+                            <div class="node-stats">م: ${root.employees} | ق: ${root.leaders}</div>
+                            ${containerId === null ? `
+                                <div class="node-actions no-print">
+                                    <button class="btn btn-small btn-edit" type="button" onclick="editNode(${root.id}, '${type}')">تعديل</button>
+                                    <button class="btn btn-small btn-danger" type="button" onclick="deleteNode(${root.id}, '${type}')">حذف</button>
+                                </div>
+                            ` : ''}
+                        </div>
+                        ${buildHTML(root.id)}
+                    </li>
+                `;
+            });
+            treeHtml += '</ul></div>';
+
+            container.innerHTML = treeHtml;
+        }
+
+        function normalizeText(text) {
+            if (!text) return '';
+            return text
+                .replace(/أ|إ|آ/g, 'ا')
+                .replace(/ة/g, 'ه')
+                .replace(/ي$/g, 'ى')
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        function calculateMetrics(data) {
+            const unitsCount = data.length;
+            const employeesCount = data.reduce((sum, node) => sum + node.employees, 0);
+            const leadersCount = data.reduce((sum, node) => sum + node.leaders, 0);
+
+            let maxDepth = 0;
+            data.forEach(node => {
+                let depth = 1;
+                let current = node;
+                let safeCounter = 0;
+
+                while (current.parentId !== null && safeCounter < 20) {
+                    depth++;
+                    current = data.find(n => n.id === current.parentId);
+                    if (!current) break;
+                    safeCounter++;
+                }
+
+                if (depth > maxDepth) maxDepth = depth;
+            });
+
+            const span = leadersCount > 0 ? (employeesCount / leadersCount).toFixed(1) : employeesCount;
+            return { units: unitsCount, leaders: leadersCount, employees: employeesCount, levels: maxDepth, span: span };
+        }
+
+        function generateAnalysis() {
+            goToScreen('screen-analysis');
+
+            document.getElementById('summary-entity-name').innerText = document.getElementById('entity-name').value || '-';
+            document.getElementById('summary-entity-sector').innerText = document.getElementById('entity-sector').value || '-';
+            document.getElementById('summary-entity-type').innerText = document.getElementById('entity-type').value || '-';
+            document.getElementById('summary-entity-parent-org').innerText = document.getElementById('entity-parent-org').value || '-';
+            document.getElementById('summary-entity-manager').innerText = document.getElementById('entity-manager').value || '-';
+            document.getElementById('summary-entity-purpose').innerText = document.getElementById('entity-purpose').value || '-';
+            document.getElementById('summary-entity-goals').innerText = document.getElementById('entity-goals').value || '-';
+
+            const metricsPrev = calculateMetrics(structures.prev);
+            const metricsNew = calculateMetrics(structures.new);
+
+            document.getElementById('kpi-units-prev').innerText = metricsPrev.units;
+            document.getElementById('kpi-units-new').innerText = metricsNew.units;
+            document.getElementById('kpi-leaders-prev').innerText = metricsPrev.leaders;
+            document.getElementById('kpi-leaders-new').innerText = metricsNew.leaders;
+            document.getElementById('kpi-levels-prev').innerText = metricsPrev.levels;
+            document.getElementById('kpi-levels-new').innerText = metricsNew.levels;
+            document.getElementById('kpi-span-prev').innerText = metricsPrev.span;
+            document.getElementById('kpi-span-new').innerText = metricsNew.span;
+
+            const prevNames = structures.prev.map(n => normalizeText(n.name));
+            const newNames = structures.new.map(n => normalizeText(n.name));
+
+            const addedUnitsCount = newNames.filter(name => !prevNames.includes(name)).length;
+            const removedUnitsCount = prevNames.filter(name => !newNames.includes(name)).length;
+            const smallUnitsCount = structures.new.filter(n => n.employees < 5 && (n.level === 'وحدة' || n.level === 'رئيس قسم')).length;
+
+            document.getElementById('kpi-added-units').innerText = addedUnitsCount;
+            document.getElementById('kpi-removed-units').innerText = removedUnitsCount;
+            document.getElementById('kpi-small-units').innerText = smallUnitsCount;
+
+            renderTree('prev', 'analysis-tree-prev');
+            renderTree('new', 'analysis-tree-new');
+
+            const diagnosisContainer = document.getElementById('diagnosis-container');
+            diagnosisContainer.innerHTML = '';
+
+            let spanNum = parseFloat(metricsNew.span);
+            if (spanNum < 3 && spanNum > 0) {
+                diagnosisContainer.innerHTML += `<li><strong>نطاق الإشراف القيادي:</strong> ضيق جدًا، مما قد يدل على زيادة في المستويات الإدارية أو قلة في الكفاءة التشغيلية.</li>`;
+            } else if (spanNum > 8) {
+                diagnosisContainer.innerHTML += `<li><strong>نطاق الإشراف القيادي:</strong> واسع جدًا، مما قد يؤثر على جودة الإشراف والمتابعة.</li>`;
+            } else {
+                diagnosisContainer.innerHTML += `<li><strong>نطاق الإشراف القيادي:</strong> معتدل ومناسب وفق المعطيات الحالية.</li>`;
+            }
+
+            let inflationRatio = metricsNew.employees > 0 ? (metricsNew.leaders / metricsNew.employees) : 0;
+            if (inflationRatio > 0.3) {
+                diagnosisContainer.innerHTML += `<li><strong>التضخم الإداري:</strong> نسبة القيادات مرتفعة مقارنة بإجمالي الموظفين، مما قد يشير إلى تضخم إداري.</li>`;
+            } else {
+                diagnosisContainer.innerHTML += `<li><strong>التضخم الإداري:</strong> نسبة القيادات إلى الموظفين ضمن نطاق مقبول.</li>`;
+            }
+
+            if (smallUnitsCount > 0) {
+                diagnosisContainer.innerHTML += `<li><strong>الوحدات الصغيرة:</strong> يوجد (${smallUnitsCount}) وحدة صغيرة قد تكون قابلة للدمج.</li>`;
+            } else {
+                diagnosisContainer.innerHTML += `<li><strong>الوحدات الصغيرة:</strong> لا توجد وحدات صغيرة ملفتة للنظر في الهيكل الجديد.</li>`;
+            }
+
+            if (metricsNew.levels > 4) {
+                diagnosisContainer.innerHTML += `<li><strong>تعقيد الهيكل التنظيمي:</strong> الهيكل يتضمن مستويات إدارية كثيرة، وقد يبطئ اتخاذ القرار.</li>`;
+            } else {
+                diagnosisContainer.innerHTML += `<li><strong>تعقيد الهيكل التنظيمي:</strong> الهيكل متوازن نسبيًا من حيث عدد المستويات الإدارية.</li>`;
+            }
+
+            const leakageContainer = document.getElementById('leakage-container');
+            leakageContainer.innerHTML = '';
+
+            let mismatchCount = 0;
+            let lowActivityCount = 0;
+
+            structures.new.forEach(node => {
+                if ((node.tasks || '').length < 30) lowActivityCount++;
+
+                const unitWords = normalizeText(node.name).split(' ');
+                const tasksStr = normalizeText(node.tasks);
+                let hasMatch = false;
+
+                unitWords.forEach(word => {
+                    if (word.length > 3 && tasksStr.includes(word)) hasMatch = true;
+                });
+
+                if (!hasMatch && tasksStr.length > 0) mismatchCount++;
+            });
+
+            let allTaskWords = structures.new.map(n => normalizeText(n.tasks)).join(' ').split(' ');
+            let wordCounts = {};
+            allTaskWords.forEach(word => {
+                if (word.length > 4) {
+                    wordCounts[word] = (wordCounts[word] || 0) + 1;
+                }
+            });
+
+            let highlyRepeated = Object.values(wordCounts).filter(v => v > 3).length;
+
+            leakageContainer.innerHTML = `
+                <div class="leakage-box">
+                    <span class="status ${mismatchCount > 0 ? 'status-reorg' : 'status-normal'}">
+                        ${mismatchCount > 0 ? 'حالات تحتاج إعادة تنظيم' : 'حالات طبيعية'}
+                    </span>
+                    <h4>عدم تطابق المهام مع المسمى</h4>
+                    <span class="desc">
+                        ${mismatchCount > 0
+                            ? `يوجد ${mismatchCount} وحدة قد لا تتطابق مهامها مع مسماها التنظيمي.`
+                            : 'تتوافق المسميات التنظيمية مع المهام بشكل عام.'}
+                    </span>
+                </div>
+
+                <div class="leakage-box">
+                    <span class="status ${lowActivityCount > 0 ? 'status-review' : 'status-normal'}">
+                        ${lowActivityCount > 0 ? 'حالات تحتاج مراجعة' : 'حالات طبيعية'}
+                    </span>
+                    <h4>الوحدات ذات النشاط المنخفض</h4>
+                    <span class="desc">
+                        ${lowActivityCount > 0
+                            ? `تم رصد ${lowActivityCount} وحدة ذات وصف مهام محدود.`
+                            : 'الوحدات تمتلك توصيفًا مقبولًا للمهام.'}
+                    </span>
+                </div>
+
+                <div class="leakage-box">
+                    <span class="status ${highlyRepeated > 3 ? 'status-reorg' : 'status-normal'}">
+                        ${highlyRepeated > 3 ? 'حالات تحتاج إعادة تنظيم' : 'حالات طبيعية'}
+                    </span>
+                    <h4>التكرار الوظيفي</h4>
+                    <span class="desc">
+                        ${highlyRepeated > 3
+                            ? 'هناك احتمال مرتفع لوجود تكرار أو تقاطع وظيفي بين عدد من الوحدات.'
+                            : 'لا يوجد تداخل جوهري ظاهر في المهام بين الوحدات.'}
+                    </span>
+                </div>
+            `;
+
+            const recContainer = document.getElementById('recommendations-container');
+            recContainer.innerHTML = '';
+
+            if (metricsNew.levels > 4) {
+                recContainer.innerHTML += `<li><strong>تقليل الطبقات الإدارية:</strong> يوصى بتقليص المستويات الإدارية المتعددة لتسريع القرار وتحسين المرونة التنظيمية.</li>`;
+            }
+
+            if (smallUnitsCount > 0) {
+                recContainer.innerHTML += `<li><strong>دمج الوحدات الصغيرة:</strong> يوصى بدراسة دمج الوحدات ذات الحجم الصغير مع وحدات قريبة في الاختصاص.</li>`;
+            }
+
+            if (inflationRatio > 0.3) {
+                recContainer.innerHTML += `<li><strong>معالجة التضخم الإداري:</strong> إعادة تقييم توزيع القيادات مقابل الوظائف التشغيلية والتخصصية.</li>`;
+            }
+
+            if (highlyRepeated > 3) {
+                recContainer.innerHTML += `<li><strong>تقليل التكرار الوظيفي:</strong> مراجعة الوحدات ذات المهام المتشابهة ودمج ما يمكن دمجه تنظيميًا.</li>`;
+            }
+
+            if (mismatchCount > 0 || lowActivityCount > 0) {
+                recContainer.innerHTML += `<li><strong>تحديث الأوصاف التنظيمية:</strong> مراجعة أسماء الوحدات ومهامها لضمان الاتساق بين المسمى والدور الفعلي.</li>`;
+            }
+
+            if (recContainer.innerHTML === '') {
+                recContainer.innerHTML = `
+                    <li>الهيكل الجديد متوازن مبدئيًا وفق المؤشرات الحالية.</li>
+                    <li>يوصى بالمراجعة الدورية للهيكل والأوصاف الوظيفية لضمان الاستدامة والكفاءة.</li>
+                `;
+            }
+        }
+    </script>
+</body>
+    </html>
