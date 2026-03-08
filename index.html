@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة الهيكلة التنظيمية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #005A3A; /* KAU Green */
+            --primary-light: #007D51;
+            --secondary-color: #B89A5A; /* KAU Gold */
+            --bg-color: #F8F9FA;
+            --card-bg: #FFFFFF;
+            --text-main: #2D3748;
+            --text-muted: #718096;
+            --border-color: #E2E8F0;
+            --danger: #E53E3E;
+            --success: #38A169;
+            --warning: #DD6B20;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.08);
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 70px;
+        }
+
+        .app-header {
+            background: var(--card-bg);
+            border-bottom: 2px solid var(--primary-color);
+            padding: 15px 30px;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .main-logo {
+            height: 65px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .login-logo {
+            height: 100px;
+            width: auto;
+            margin: 0 auto 15px auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .titles h1 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+
+        .titles h2 {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .portal-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            background: rgba(184, 154, 90, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .app-footer {
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 -1px 3px rgba(0,0,0,0.05);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .footer-divider {
+            color: var(--border-color);
+        }
+
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            padding: 15px 25px;
+            border-radius: var(--border-radius);
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: slideIn 0.3s ease forwards;
+            min-width: 280px;
+        }
+        .toast.success { background-color: var(--success); }
+        .toast.error { background-color: var(--danger); }
+        .toast.fade-out { animation: fadeOut 0.3s ease forwards; }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(-100%); opacity: 0; }
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 10000;
+            opacity: 0; pointer-events: none;
+            transition: var(--transition);
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+
+        .modal-box {
+            background: white;
+            padding: 25px 30px;
+            border-radius: var(--border-radius);
+            width: 400px; max-width: 90%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: translateY(-20px);
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active .modal-box { transform: translateY(0); }
+
+        .modal-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .app-container {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .text-center { text-align: center; }
+        .text-large { font-size: 1.5rem; letter-spacing: 5px; }
+        .mt-15 { margin-top: 15px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .flex-between { display: flex; justify-content: space-between; align-items: center; }
+        .flex-gap { display: flex; gap: 10px; align-items: center; }
+        .flex-1 { flex: 1; }
+
+        .form-group { margin-bottom: 15px; }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-size: 0.95rem;
+            transition: var(--transition);
+            background-color: #fafafa;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(184, 154, 90, 0.2);
+        }
+
+        .login-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+            display: block;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-primary { background-color: var(--primary-color); color: white; }
+        .btn-primary:hover { background-color: var(--primary-light); }
+
+        .btn-secondary { background-color: var(--secondary-color); color: white; }
+        .btn-secondary:hover { background-color: #a3864d; }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+        .btn-outline:hover { background-color: #f1f1f1; }
+
+        .btn-block { width: 100%; }
+
+        .btn-small {
+            padding: 4px 8px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            color: white;
+        }
+
+        .btn-danger { background-color: var(--danger); color: white; }
+        .btn-danger:hover { background-color: #c53030; }
+        .btn-edit { background-color: #4A5568; }
+        .btn-edit:hover { background-color: #2D3748; }
+
+        .card, .panel {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .card-header, .panel-header {
+            background: #f8f9fc;
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 20px;
+        }
+
+        .card-header h3, .panel-header h3 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .panel-header .subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .card-body, .panel-body { padding: 20px; }
+
+        .card-footer, .panel-footer {
+            padding: 15px 20px;
+            border-top: 1px solid var(--border-color);
+            background: #fcfcfc;
+        }
+
+        .login-card {
+            max-width: 400px;
+            margin: 80px auto;
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .login-header h2 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .login-header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .builder-layout {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 20px;
+            height: calc(100vh - 160px);
+        }
+
+        .builder-form {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .builder-form .panel-body {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .form-section h4 {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .builder-preview {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .tree-container {
+            flex: 1;
+            overflow: auto;
+            background: #fafbfc;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .empty-state {
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 50px;
+            font-size: 1.1rem;
+        }
+
+        .org-tree ul {
+            padding-top: 20px;
+            position: relative;
+            transition: all 0.5s;
+            display: flex;
+            justify-content: center;
+        }
+
+        .org-tree li {
+            float: left;
+            text-align: center;
+            list-style-type: none;
+            position: relative;
+            padding: 20px 10px 0 10px;
+            transition: all 0.5s;
+        }
+
+        .org-tree li::before,
+        .org-tree li::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 50%;
+            border-top: 2px solid var(--primary-color);
+            width: 50%;
+            height: 20px;
+        }
+
+        .org-tree li::after {
+            right: auto;
+            left: 50%;
+            border-left: 2px solid var(--primary-color);
+        }
+
+        .org-tree li:only-child::after,
+        .org-tree li:only-child::before {
+            display: none;
+        }
+
+        .org-tree li:only-child { padding-top: 0; }
+
+        .org-tree li:first-child::before,
+        .org-tree li:last-child::after {
+            border: 0 none;
+        }
+
+        .org-tree li:last-child::before {
+            border-right: 2px solid var(--primary-color);
+            border-radius: 0 5px 0 0;
+        }
+
+        .org-tree li:first-child::after {
+            border-radius: 5px 0 0 0;
+        }
+
+        .org-tree ul ul::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            border-left: 2px solid var(--primary-color);
+            width: 0;
+            height: 20px;
+        }
+
+        .org-tree .node-box {
+            border: 1px solid var(--primary-color);
+            padding: 10px 15px;
+            color: var(--text-main);
+            display: inline-block;
+            border-radius: 6px;
+            transition: all 0.3s;
+            background: white;
+            min-width: 140px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .org-tree .node-box:hover {
+            background: #f0fdf4;
+            border-color: var(--secondary-color);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .node-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: block;
+            margin-bottom: 3px;
+            color: var(--primary-color);
+        }
+
+        .node-level {
+            font-size: 0.75rem;
+            color: #fff;
+            background: var(--secondary-color);
+            padding: 2px 6px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .node-stats {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+            border-top: 1px solid #eee;
+            padding-top: 5px;
+        }
+
+        .node-actions {
+            position: absolute;
+            top: -12px;
+            left: -10px;
+            display: none;
+            gap: 5px;
+        }
+
+        .org-tree .node-box:hover .node-actions {
+            display: flex;
+        }
+
+        .analysis-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .analysis-header h2 { color: var(--primary-color); }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .kpi-card {
+            background: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            border-top: 3px solid var(--secondary-color);
+        }
+
+        .kpi-secondary {
+            border-top-color: var(--text-muted);
+            background: #fdfdfd;
+        }
+
+        .kpi-title {
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .kpi-values {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .value-box { text-align: center; }
+
+        .value-box .label {
+            display: block;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .value-box .val {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        .value-box.highlight .val { color: var(--secondary-color); }
+
+        .vs {
+            font-size: 0.8rem;
+            color: #cbd5e0;
+            font-weight: bold;
+        }
+
+        .kpi-single-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        .highlight-success { color: var(--success); }
+        .highlight-danger { color: var(--danger); }
+        .highlight-warning { color: var(--warning); }
+
+        .kpi-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .comparison-trees {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .tree-panel {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .tree-panel h3 {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fc;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--primary-color);
+        }
+
+        .tree-panel .tree-container.static {
+            height: 400px;
+            padding: 20px;
+        }
+
+        .analysis-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .diff-list,
+        .recommendation-list,
+        .advanced-list {
+            list-style: none;
+        }
+
+        .diff-list li,
+        .recommendation-list li,
+        .advanced-list li {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .diff-list li:last-child,
+        .recommendation-list li:last-child,
+        .advanced-list li:last-child {
+            border-bottom: none;
+        }
+
+        .diff-list li::before {
+            content: '▪';
+            position: absolute;
+            right: 10px;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+        }
+
+        .recommendation-list li::before {
+            content: '💡';
+            position: absolute;
+            right: 10px;
+        }
+
+        .advanced-list li::before {
+            content: '🔍';
+            position: absolute;
+            right: 10px;
+        }
+
+        .leakage-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .leakage-box {
+            padding: 15px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 1px solid var(--border-color);
+            background: #fafafa;
+        }
+
+        .leakage-box h4 {
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .leakage-box .status {
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .leakage-box .desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .status-normal { color: var(--success); }
+        .status-review { color: var(--warning); }
+        .status-reorg { color: var(--danger); }
+
+        @media (max-width: 1100px) {
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .comparison-trees,
+            .analysis-details {
+                grid-template-columns: 1fr;
+            }
+            .analysis-details .card[style*="grid-column: span 2"] {
+                grid-column: auto !important;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .builder-layout {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            .builder-form,
+            .builder-preview {
+                height: auto;
+            }
+            .tree-container {
+                min-height: 320px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-bottom: 110px;
+            }
+            .header-content,
+            .logo-area,
+            .flex-between {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .portal-title {
+                text-align: center;
+                align-self: center;
+            }
+            .footer-content {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .footer-divider {
+                display: none;
+            }
+            .grid-2,
+            .kpi-grid,
+            .comparison-trees,
+            .analysis-details,
+            .leakage-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-actions,
+            .flex-gap {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 15mm 15mm 20mm 15mm;
+            }
+            
+            body {
+                background-color: white;
+                padding-bottom: 0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .no-print, .btn, .node-actions, .toast-container, .modal-overlay {
+                display: none !important;
+            }
+
+            .app-header {
+                position: static;
+                box-shadow: none;
+                padding: 10px 0;
+                border-bottom: 2px solid var(--primary-color);
+                margin-bottom: 20px;
+            }
+
+            .main-logo {
+                height: 55px;
+            }
+
+            .app-container {
+                margin: 0;
+                padding: 0;
+            }
+
+            .app-footer {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background: white;
+                border-top: 1px solid #ccc;
+                box-shadow: none;
+                padding: 10px 0;
+                display: block;
+            }
+
+            .card, .tree-panel {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+            }
+
+            .builder-layout, .comparison-trees {
+                display: block;
+            }
+
+            .tree-panel {
+                margin-bottom: 20px;
+                page-break-inside: avoid;
+            }
+            
+            .tree-panel .tree-container.static {
+                height: auto;
+                min-height: 200px;
+                overflow: visible;
+            }
+
+            .kpi-grid {
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+
+            .kpi-card {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="toast-container" class="toast-container no-print"></div>
+
+    <div id="confirm-modal" class="modal-overlay no-print">
+        <div class="modal-box">
+            <h3 class="modal-title">تأكيد الإجراء</h3>
+            <p id="confirm-msg">هل أنت متأكد؟</p>
+            <div class="modal-actions">
+                <button class="btn btn-outline" onclick="closeConfirm()">إلغاء</button>
+                <button class="btn btn-danger" onclick="executeConfirm()">تأكيد الحذف</button>
+            </div>
+        </div>
+    </div>
+
+    <header class="app-header">
+        <div class="header-content">
+            <div class="logo-area">
+                <img src="King-Abdulaziz-University-01.png" alt="شعار جامعة الملك عبدالعزيز" class="main-logo">
+                <div class="titles">
+                    <h1>جامعة الملك عبدالعزيز</h1>
+                    <h2>لجنة اعتماد الهياكل التنظيمية والأوصاف الوظيفية لقطاعات الجامعة</h2>
+                </div>
+            </div>
+            <div class="portal-title">بوابة الهيكلة التنظيمية</div>
+        </div>
+    </header>
+
+    <main class="app-container">
+        
+        <section id="screen-login" class="screen active">
+            <div class="login-card">
+                <div class="login-header">
+                    <img src="King-Abdulaziz-University-01.png" alt="شعار جامعة الملك عبدالعزيز" class="login-logo">
+                    <h2>بوابة الهيكلة التنظيمية</h2>
+                    <p>لجنة اعتماد الهياكل التنظيمية والأوصاف الوظيفية لقطاعات الجامعة</p>
+                </div>
+                <form onsubmit="login(event)">
+                    <div class="form-group">
+                        <label>رمز الدخول (4 أرقام)</label>
+                        <input type="password" id="login-pin" maxlength="4" placeholder="----" class="text-center text-large" autocomplete="off">
+                        <span class="login-note">لأغراض العرض التجريبي، يكفي إدخال أي رمز مكوّن من 4 أرقام.</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">دخول</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="screen-entity" class="screen hidden">
+            <div class="card">
+                <div class="card-header">
+                    <h3>تعريف الجهة</h3>
+                </div>
+                <form id="form-entity" onsubmit="handleEntityNext(event)">
+                    <div class="card-body">
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label>اسم الجهة *</label>
+                                <input type="text" id="entity-name" placeholder="أدخل اسم الجهة" required>
+                            </div>
+                            <div class="form-group">
+                                <label>نوع الجهة *</label>
+                                <select id="entity-type" required>
+                                    <option value="">اختر النوع</option>
+                                    <option value="كلية">كلية</option>
+                                    <option value="عمادة">عمادة</option>
+                                    <option value="مركز">مركز</option>
+                                    <option value="معهد">معهد</option>
+                                    <option value="إدارة عامة">إدارة عامة</option>
+                                    <option value="إدارة">إدارة</option>
+                                    <option value="برنامج">برنامج</option>
+                                    <option value="وحدة مستقلة">وحدة مستقلة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>الارتباط التنظيمي الأعلى *</label>
+                                <select id="entity-parent-org" required>
+                                    <option value="">اختر الارتباط التنظيمي</option>
+                                    <option value="رئيس الجامعة">رئيس الجامعة</option>
+                                    <option value="نائب رئيس الجامعة للشؤون التعليمية">نائب رئيس الجامعة للشؤون التعليمية</option>
+                                    <option value="نائب رئيس الجامعة للبحث العلمي والابتكار">نائب رئيس الجامعة للبحث العلمي والابتكار</option>
+                                    <option value="نائب رئيس الجامعة للحياة الجامعية والتشغيل">نائب رئيس الجامعة للحياة الجامعية والتشغيل</option>
+                                    <option value="نائب رئيس الجامعة للتحول والاستراتيجية">نائب رئيس الجامعة للتحول والاستراتيجية</option>
+                                    <option value="الرئيس التنفيذي للمالية">الرئيس التنفيذي للمالية</option>
+                                    <option value="الرئيس التنفيذي للموارد البشرية">الرئيس التنفيذي للموارد البشرية</option>
+                                    <option value="الرئيس التنفيذي لتقنية المعلومات والبيانات">الرئيس التنفيذي لتقنية المعلومات والبيانات</option>
+                                    <option value="الرئيس التنفيذي للاتصال المؤسسي">الرئيس التنفيذي للاتصال المؤسسي</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>القطاع *</label>
+                                <select id="entity-sector" required>
+                                    <option value="">اختر القطاع</option>
+                                    <option value="قطاع الشؤون التعليمية">قطاع الشؤون التعليمية</option>
+                                    <option value="قطاع البحث العلمي والابتكار">قطاع البحث العلمي والابتكار</option>
+                                    <option value="قطاع الحياة الجامعية والتشغيل">قطاع الحياة الجامعية والتشغيل</option>
+                                    <option value="قطاع التحول والاستراتيجية">قطاع التحول والاستراتيجية</option>
+                                    <option value="قطاع الخدمات المؤسسية">قطاع الخدمات المؤسسية</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>المسؤول عن الجهة *</label>
+                                <select id="entity-manager" required>
+                                    <option value="">اختر المسؤول</option>
+                                    <option value="عميد">عميد</option>
+                                    <option value="مدير عام">مدير عام</option>
+                                    <option value="مدير مركز">مدير مركز</option>
+                                    <option value="مدير إدارة">مدير إدارة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>إجمالي عدد الموظفين</label>
+                                <input type="number" id="entity-employees" placeholder="0" min="0">
+                            </div>
+                        </div>
+                        <div class="form-group mt-15">
+                            <label>الغرض من الجهة *</label>
+                            <textarea id="entity-purpose" rows="2" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>الأهداف الرئيسية للجهة *</label>
+                            <textarea id="entity-goals" rows="3" required></textarea>
+                        </div>
+                    </div>
+                    <div class="card-footer flex-between">
+                        <button type="button" class="btn btn-outline" onclick="goToScreen('screen-login')">السابق</button>
+                        <button type="submit" class="btn btn-primary">التالي</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section id="screen-prev-struct" class="screen hidden">
+            <div class="builder-layout">
+                <div class="builder-form panel">
+                    <div class="panel-header">
+                        <h3>إدخال الهيكل السابق</h3>
+                        <p class="subtitle">بناء وتكوين الوحدات التنظيمية</p>
+                    </div>
+                    <div class="panel-body">
+                        <form id="form-prev" onsubmit="saveNode(event, 'prev')">
+                            <div class="form-section">
+                                <h4>الحقول الإلزامية</h4>
+                                <div class="form-group">
+                                    <label>اسم الوحدة التنظيمية *</label>
+                                    <input type="text" id="prev-name" required>
+                                </div>
+                                <div class="grid-2">
+                                    <div class="form-group">
+                                        <label>المستوى التنظيمي *</label>
+                                        <select id="prev-level" required>
+                                            <option value="">اختر المستوى</option>
+                                            <option value="رئيس الجامعة">رئيس الجامعة</option>
+                                            <option value="نائب رئيس الجامعة">نائب رئيس الجامعة</option>
+                                            <option value="رئيس تنفيذي">رئيس تنفيذي</option>
+                                            <option value="عميد">عميد</option>
+                                            <option value="مدير عام">مدير عام</option>
+                                            <option value="مدير مركز">مدير مركز</option>
+                                            <option value="مدير إدارة">مدير إدارة</option>
+                                            <option value="رئيس قسم">رئيس قسم</option>
+                                            <option value="وحدة">وحدة</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>الوحدة الأم *</label>
+                                        <select id="prev-parent">
+                                            <option value="null">لا يوجد (ارتباط مباشر)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>عدد الموظفين *</label>
+                                        <input type="number" id="prev-emp" required min="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>عدد القيادات *</label>
+                                        <input type="number" id="prev-lead" required min="0">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>الأهداف الرئيسية *</label>
+                                    <textarea id="prev-goals" rows="2" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>المهام الرئيسية *</label>
+                                    <textarea id="prev-tasks" rows="2" required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h4>حقول إضافية</h4>
+                                <div class="form-group">
+                                    <label>المهام الثانوية</label>
+                                    <textarea id="prev-subtasks" rows="1"></textarea>
+                                </div>
+                                <div class="grid-2">
+                                    <div class="form-group">
+                                        <label>الوظائف الشاغرة</label>
+                                        <input type="number" id="prev-vacancies" min="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>الملاحظات</label>
+                                        <input type="text" id="prev-notes">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex-gap">
+                                <button type="submit" id="btn-submit-prev" class="btn btn-secondary flex-1">إضافة الوحدة التنظيمية</button>
+                                <button type="button" id="btn-cancel-prev" class="btn btn-outline" style="display:none;" onclick="cancelEdit('prev')">إلغاء التعديل</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="panel-footer flex-between">
+                        <button class="btn btn-outline" onclick="goToScreen('screen-entity')">السابق</button>
+                        <button class="btn btn-primary" onclick="validateAndGoToNewStruct()">التالي (إنهاء الهيكل السابق)</button>
+                    </div>
+                </div>
+                
+                <div class="builder-preview panel">
+                    <div class="panel-header">
+                        <h3>الشجرة التنظيمية: الهيكل السابق</h3>
+                    </div>
+                    <div class="panel-body tree-container" id="tree-prev-container">
+                        <div class="empty-state">لم يتم إضافة وحدات بعد</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="screen-new-struct" class="screen hidden">
+            <div class="builder-layout">
+                <div class="builder-form panel">
+                    <div class="panel-header">
+                        <h3>إدخال الهيكل الجديد</h3>
+                        <p class="subtitle">بناء وتكوين الوحدات التنظيمية</p>
+                    </div>
+                    <div class="panel-body">
+                        <form id="form-new" onsubmit="saveNode(event, 'new')">
+                            <div class="form-section">
+                                <h4>الحقول الإلزامية</h4>
+                                <div class="form-group">
+                                    <label>اسم الوحدة التنظيمية *</label>
+                                    <input type="text" id="new-name" required>
+                                </div>
+                                <div class="grid-2">
+                                    <div class="form-group">
+                                        <label>المستوى التنظيمي *</label>
+                                        <select id="new-level" required>
+                                            <option value="">اختر المستوى</option>
+                                            <option value="رئيس الجامعة">رئيس الجامعة</option>
+                                            <option value="نائب رئيس الجامعة">نائب رئيس الجامعة</option>
+                                            <option value="رئيس تنفيذي">رئيس تنفيذي</option>
+                                            <option value="عميد">عميد</option>
+                                            <option value="مدير عام">مدير عام</option>
+                                            <option value="مدير مركز">مدير مركز</option>
+                                            <option value="مدير إدارة">مدير إدارة</option>
+                                            <option value="رئيس قسم">رئيس قسم</option>
+                                            <option value="وحدة">وحدة</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>الوحدة الأم *</label>
+                                        <select id="new-parent">
+                                            <option value="null">لا يوجد (ارتباط مباشر)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>عدد الموظفين *</label>
+                                        <input type="number" id="new-emp" required min="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>عدد القيادات *</label>
+                                        <input type="number" id="new-lead" required min="0">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>الأهداف الرئيسية *</label>
+                                    <textarea id="new-goals" rows="2" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>المهام الرئيسية *</label>
+                                    <textarea id="new-tasks" rows="2" required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h4>حقول إضافية</h4>
+                                <div class="form-group">
+                                    <label>المهام الثانوية</label>
+                                    <textarea id="new-subtasks" rows="1"></textarea>
+                                </div>
+                                <div class="grid-2">
+                                    <div class="form-group">
+                                        <label>الوظائف الشاغرة</label>
+                                        <input type="number" id="new-vacancies" min="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>الملاحظات</label>
+                                        <input type="text" id="new-notes">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex-gap">
+                                <button type="submit" id="btn-submit-new" class="btn btn-secondary flex-1">إضافة الوحدة التنظيمية</button>
+                                <button type="button" id="btn-cancel-new" class="btn btn-outline" style="display:none;" onclick="cancelEdit('new')">إلغاء التعديل</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="panel-footer flex-between">
+                        <button class="btn btn-outline" onclick="goToScreen('screen-prev-struct')">السابق</button>
+                        <button class="btn btn-primary" onclick="validateAndGenerateAnalysis()">التالي (إنهاء الهيكل الجديد)</button>
+                    </div>
+                </div>
+                
+                <div class="builder-preview panel">
+                    <div class="panel-header">
+                        <h3>الشجرة التنظيمية: الهيكل الجديد</h3>
+                    </div>
+                    <div class="panel-body tree-container" id="tree-new-container">
+                        <div class="empty-state">لم يتم إضافة وحدات بعد</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="screen-analysis" class="screen hidden">
+            <div class="analysis-header">
+                <h2>مقارنة الهيكلين والتحليل التنظيمي</h2>
+                <div class="flex-gap">
+                    <button class="btn btn-outline no-print" onclick="goToScreen('screen-new-struct')">السابق</button>
+                    <button class="btn btn-primary no-print" onclick="window.print()">طباعة التقرير الرسمي</button>
+                </div>
+            </div>
+
+            <div class="card" style="margin-bottom: 25px; page-break-inside: avoid;">
+                <div class="card-body">
+                    <div class="flex-between" style="border-bottom: 1px dashed var(--border-color); padding-bottom: 15px; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+                        <div><span class="text-muted" style="font-size:0.85rem;">اسم الجهة:</span> <strong id="summary-entity-name" style="color:var(--primary-color);"></strong></div>
+                        <div><span class="text-muted" style="font-size:0.85rem;">القطاع:</span> <strong id="summary-entity-sector" style="color:var(--primary-color);"></strong></div>
+                        <div><span class="text-muted" style="font-size:0.85rem;">نوع الجهة:</span> <strong id="summary-entity-type" style="color:var(--primary-color);"></strong></div>
+                        <div><span class="text-muted" style="font-size:0.85rem;">الارتباط التنظيمي الأعلى:</span> <strong id="summary-entity-parent-org" style="color:var
